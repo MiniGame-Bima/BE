@@ -12,10 +12,13 @@ pygame.display.set_caption("벽돌 게임")
 
 # 색상 정의
 BLACK = "#000000"
-PINK = "#ff8ea0"
-RED = "#ff0000"
-BLUE = "#3c00ff"
-SKY_BLUE = (135, 206, 235)
+PINK = "#CD7F32"
+RED = "#B22222"
+BLUE = "#556B2F"
+SKY_BLUE = "#FFFFF0"
+
+
+
 
 # 패들 설정
 paddle_width = 100
