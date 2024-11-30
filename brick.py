@@ -1,5 +1,4 @@
 import pygame
-import random
 
 # 게임 초기화
 pygame.init()
@@ -12,13 +11,10 @@ pygame.display.set_caption("벽돌 게임")
 
 # 색상 정의
 BLACK = "#000000"
-PINK = "#CD7F32"
+BRONZE = "#CD7F32"
 RED = "#B22222"
 BLUE = "#556B2F"
 SKY_BLUE = "#FFFFF0"
-
-
-
 
 # 패들 설정
 paddle_width = 100
@@ -35,19 +31,21 @@ ball = pygame.Rect(screen_width // 2 - ball_radius, screen_height // 2 - ball_ra
 # 벽돌 설정
 brick_width = 60
 brick_height = 20
-bricks = []
-
-# 벽돌들이 상단과 오른쪽을 꽉 채우도록 설정
 brick_gap = 5  # 벽돌 사이의 간격
 bricks_per_row = screen_width // (brick_width + brick_gap)  # 벽돌이 화면 가로를 꽉 채우도록 계산
 
+# 전체 벽돌 너비 계산 (벽돌 수 x 각 벽돌의 너비 + 간격)
+total_bricks_width = bricks_per_row * (brick_width + brick_gap) - brick_gap  # 마지막 벽돌의 간격 제외
+center_offset_x = (screen_width - total_bricks_width) // 2  # 화면 가로의 중앙에 맞추는 오프셋
+
 # 벽돌의 Y 좌표 (상단에 배치)
 start_y = 50
+bricks = []
 
 # 벽돌들의 배치
 for row in range(5):  # 총 5행
     for col in range(bricks_per_row):  # 각 행에 맞게 벽돌 배치
-        brick_x = col * (brick_width + brick_gap)
+        brick_x = center_offset_x + col * (brick_width + brick_gap)  # X 좌표에 중앙 정렬 오프셋 추가
         brick_y = start_y + row * (brick_height + brick_gap)
         brick = pygame.Rect(brick_x, brick_y, brick_width, brick_height)
         bricks.append(brick)
@@ -97,7 +95,7 @@ while running:
     # 화면 그리기
     screen.fill(SKY_BLUE)
     pygame.draw.rect(screen, BLUE, paddle)
-    pygame.draw.ellipse(screen, PINK, ball)
+    pygame.draw.ellipse(screen, BRONZE, ball)
 
     for brick in bricks:
         pygame.draw.rect(screen, RED, brick)
