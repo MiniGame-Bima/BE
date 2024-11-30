@@ -5,8 +5,8 @@ import random
 pygame.init()
 
 # 화면 크기 설정
-screen_width = 800
-screen_height = 600
+screen_width = 960
+screen_height = 720
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("벽돌 게임")
 
@@ -15,6 +15,7 @@ BLACK = "#000000"
 PINK = "#ff8ea0"
 RED = "#ff0000"
 BLUE = "#3c00ff"
+SKY_BLUE = (135, 206, 235)
 
 # 패들 설정
 paddle_width = 100
@@ -33,9 +34,19 @@ brick_width = 60
 brick_height = 20
 bricks = []
 
-for row in range(5):
-    for col in range(12):
-        brick = pygame.Rect(col * (brick_width + 5) + 35, row * (brick_height + 5) + 50, brick_width, brick_height)
+# 벽돌들이 상단과 오른쪽을 꽉 채우도록 설정
+brick_gap = 5  # 벽돌 사이의 간격
+bricks_per_row = screen_width // (brick_width + brick_gap)  # 벽돌이 화면 가로를 꽉 채우도록 계산
+
+# 벽돌의 Y 좌표 (상단에 배치)
+start_y = 50
+
+# 벽돌들의 배치
+for row in range(5):  # 총 5행
+    for col in range(bricks_per_row):  # 각 행에 맞게 벽돌 배치
+        brick_x = col * (brick_width + brick_gap)
+        brick_y = start_y + row * (brick_height + brick_gap)
+        brick = pygame.Rect(brick_x, brick_y, brick_width, brick_height)
         bricks.append(brick)
 
 # 게임 루프
@@ -78,10 +89,10 @@ while running:
     # 공이 바닥에 떨어졌을 때
     if ball.bottom >= screen_height:
         running = False
-        print("게임 오버!")
+        print("Game over!")
 
     # 화면 그리기
-    screen.fill(BLACK)
+    screen.fill(SKY_BLUE)
     pygame.draw.rect(screen, BLUE, paddle)
     pygame.draw.ellipse(screen, PINK, ball)
 
