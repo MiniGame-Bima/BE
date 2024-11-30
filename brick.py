@@ -24,8 +24,8 @@ paddle = pygame.Rect(screen_width // 2 - paddle_width // 2, screen_height - 40, 
 
 # 공 설정
 ball_radius = 10
-ball_speed_x = 4
-ball_speed_y = -4
+ball_speed_x = 6
+ball_speed_y = -6
 ball = pygame.Rect(screen_width // 2 - ball_radius, screen_height // 2 - ball_radius, ball_radius * 2, ball_radius * 2)
 
 # 벽돌 설정
