@@ -17,7 +17,7 @@ BLUE = "#556B2F"
 SKY_BLUE = "#FFFFF0"
 
 # 패들 설정
-paddle_width = 100
+paddle_width = 120
 paddle_height = 10
 paddle_speed = 6
 paddle = pygame.Rect(screen_width // 2 - paddle_width // 2, screen_height - 40, paddle_width, paddle_height)
